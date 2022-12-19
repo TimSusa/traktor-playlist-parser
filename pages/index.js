@@ -169,14 +169,22 @@ export default function Home() {
       <style jsx global>{`
         html,
         body {
-          padding: 0;
+          padding: 16px;
           margin: 0;
-          background-position: center;
-          background: radial-gradient(circle,rgba(223,93,12,.7)0%,rgba(2,0,36,.5)0%,rgb(0 0 0 / 28%)100%);
-          background-size: cover;
-          color: rgb(8 4 4 / 85%);
-     
-          opacity: 1;
+          width: 100%;
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-size: 300% 300%;
+          background-image: linear-gradient(
+                -45deg, 
+                rgba(59,173,227,1) 0%, 
+                rgba(87,111,230,1) 25%, 
+                rgba(152,68,183,1) 51%, 
+                rgba(255,53,127,1) 100%
+          );  
+          animation: AnimateBG 20s ease infinite;
 
           font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
             Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
