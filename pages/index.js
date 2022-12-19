@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useState } from "react";
-import { parseXml } from './comp/parseXml'
+import { parseXml } from '../components/parseXml'
 
 export default function Home() {
   const [playlistText, setPlaylistText] = useState('')
@@ -97,7 +97,7 @@ export default function Home() {
         }
         h1, h3, p {
           text-align: center;
-          
+
         }
 
         .dropzone {
