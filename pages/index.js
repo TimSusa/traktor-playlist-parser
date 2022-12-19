@@ -101,27 +101,18 @@ export default function Home() {
 
         .dropzone {
           height: 70vw;
-          background: white;
           border-radius: 10px;
           transition: color 0.15s ease;
-          #drop_zone {
-            background-color: #333;
             border: #999 5px dashed;
-            width: 100%;
-            height: 100px;
-            padding: 8px;
+            padding: 16px;
             font-size: 18px;
             vertical-align: middle;
             text-align: center;
-            margin-bitton: 10px;
-        }
-          opacity: 90%;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             color: #fff4d1e7
             text-decoration: none;
-            border-radius: 10px;
             background: radial-gradient(circle,rgba(223,93,12,.7)0%,rgba(2,0,36,.5)0%,rgb(0 0 0 / 28%)100%);
         }
 
@@ -139,31 +130,6 @@ export default function Home() {
             background: radial-gradient(circle,rgba(223,93,12,.7)0%,rgba(2,0,36,.5)0%,rgb(0 0 0 / 28%)100%);
           }
         }
-
-        .card-small {
-          text-align: center;
-          color: #fff4d1e7
-          height: 100%;
-          text-decoration: none;
-          border-radius: 10px;
-          width: 100%;
-          max-width: 640px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          transition: background 0.35s ease-out;
-         
-          text-decoration: none;
-          border-radius: 10px;
-          height 30vh;
-
-          max-width: 512px;
-          transition: color 0.15s ease;
-          opacity: 90%;
-        }
-
-        
       `}</style>
 
       <style jsx global>{`
@@ -189,6 +155,12 @@ export default function Home() {
           font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
             Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
             sans-serif;
+
+            @keyframes AnimateBG { 
+              0%{background-position:0% 50%}
+              50%{background-position:100% 50%}
+              100%{background-position:0% 50%}
+            }
         }
       `}</style>
     </div>
