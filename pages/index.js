@@ -1,4 +1,4 @@
-import Head from "next/head";
+import CustomHead from '../components/MetaHead'
 import { useState } from "react";
 import { parseXml } from '../components/parseXml'
 
@@ -6,10 +6,10 @@ export default function Home() {
   const [playlistText, setPlaylistText] = useState('')
   return (
     <div className="container">
-      <Head>
+      <CustomHead>
         <title>Traktor Playlist Parser</title>
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+      </CustomHead>
 
       <main>
         <a href="https://www.timsusa.net">

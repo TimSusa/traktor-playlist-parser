@@ -21,7 +21,6 @@ export default function MetaHead(props) {
         itemProp="description"
         content={props.description || defaults.description}
       />
-      <meta itemProp="image" content={props.image || defaults.image} />
 
       {/*<!-- Facebook Meta Tags -->*/}
       <meta property="og:title" content={props.title || defaults.title} />
