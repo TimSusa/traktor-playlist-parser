@@ -76,6 +76,7 @@ export default function Home() {
       <style jsx>{`
         .container {
           width: 100%;
+          padding: 16px;
         }
         
         a {
@@ -139,7 +140,6 @@ export default function Home() {
           padding: 16px;
           margin: 0;
           width: 100%;
-          height: 100vh;
           display: flex;
           align-items: center;
           justify-content: center;
