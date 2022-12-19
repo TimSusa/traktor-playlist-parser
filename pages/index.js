@@ -97,6 +97,7 @@ export default function Home() {
         }
         h1, h3, p {
           text-align: center;
+          
         }
 
         .dropzone {

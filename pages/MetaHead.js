@@ -3,7 +3,7 @@ import Head from "next/head";
 export default function MetaHead(props) {
   const defaults = {
     title: "TRAKTOR Playlist Parser",
-    description: `Tim Susa´s Traktor Playlist PARSER`,
+    description: `Tim Susas Traktor Playlist PARSER`,
     image: "../public/artist.jpeg",
     url: "https://www.timsusa.net",
   };
