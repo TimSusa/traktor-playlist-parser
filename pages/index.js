@@ -1,19 +1,29 @@
 import CustomHead from '../components/MetaHead'
 import { useState } from "react";
-import { parseXml } from '../components/parseXml'
+import { Parser } from 'm3u8-Parser'
+
+var parser = new Parser();
+parser.addParser({
+  expression: /^#VOD-FRAMERATE/,
+  customType: 'framerate',
+  dataParser: function (line) {
+    return parseFloat(line.split(':')[1]);
+  }
+});
 
 export default function Home() {
   const [playlistText, setPlaylistText] = useState('')
+
   return (
     <div className="container">
       <CustomHead>
-        <title>Traktor Playlist Parser</title>
+        <title>Rekordbox Playlist Parser</title>
         <link rel="icon" href="/favicon.ico" />
       </CustomHead>
 
       <main>
         <a href="https://www.timsusa.net">
-          <h1>Traktor Playlist Parser</h1>
+          <h1>Rekordbox Playlist Parser</h1>
         </a>
         <br></br>
         <div
@@ -27,13 +37,22 @@ export default function Home() {
             reader.onload = function (event) {
               var test_text = event.target.result;
 
-              if (test_text.indexOf("<?xml") == 0 && test_text.indexOf("<NML") > 0) {
-                text = test_text;
-                parsedText = parseXml(text, "");
-                setPlaylistText(parsedText);
-              } else {
-                alert("The file you dropped does not look like an NML file.");
-              }
+
+              text = test_text.split("\n");
+              parser.push(text);
+              parser.end();
+              parsedText = parser.manifest;
+              const manifest = [
+                '#EXTM3U',
+                '#EXT-X-VERSION:3',
+                '#VOD-FRAMERATE:29.97',
+                ''
+              ].join('\n');
+              parser.push(manifest.concat(text.join('\n')));
+              parser.end();
+              parser.manifest // 29.97
+              console.log(parsedText)
+              setPlaylistText(parsedText.segments);
             };
 
             reader.readAsText(event.dataTransfer.files[0]);
@@ -46,18 +65,21 @@ export default function Home() {
             event.preventDefault();
           }}
         >
-          {playlistText ? (
-            <pre>{playlistText}</pre>
+          {playlistText ? playlistText.map(({ uri, duration }) => {
+            let filename = uri.substring(uri.lastIndexOf('/') + 1);
+            return (<><div>{`${filename} - ${(duration / 60).toString().substr(0, 4)}min`}</div><div>{ }</div></>)
+          }
+
           ) : (
             <div>
-              <h3>Easily Drop *.nml File from Traktor to this area:</h3>
+              <h3>Easily Drop *.m3u8 File from Rekordbox History to this area:</h3>
               <br></br>
               <p>
-                <b>Mac OSX: </b>Documents/Native Instruments/Traktor-*/History/*
+                <b>Mac OSX: </b>/Volumes/mydevice/pioneer../*/History/*
                 <br></br>
                 or
                 <br></br>
-                <b> Win:</b> Documents and Settings/BulletWithButterflyWings/lol
+                <b> Win:</b> where your stuff is /lol
 
               </p>
             </div>
@@ -67,7 +89,7 @@ export default function Home() {
         </div>
 
 
-      </main>
+      </main >
       <footer>
         <a href="https://linktr.ee/timsusa" rel="noreferrer" target="_blank">
           LinkTree
@@ -91,9 +113,9 @@ export default function Home() {
           cursor: pointer;
           background: radial-gradient(
             circle,
-            rgba(223, 93, 12, 0.7) 100%,
+            rgba(223, 93, 22, 0.4) 100%,
             rgba(2, 0, 36, 0.5) 0%,
-            rgba(0, 212, 255, 0.2805497198879552) 0%
+            rgba(0, 212, 255, 0.1805497198879552) 0%
           );
         }
         h1, h3, p {
@@ -115,7 +137,7 @@ export default function Home() {
             align-items: center;
             color: #fff4d1e7
             text-decoration: none;
-            background: radial-gradient(circle,rgba(223,93,12,.7)0%,rgba(2,0,36,.5)0%,rgb(0 0 0 / 28%)100%);
+            background: radial-gradient(circle,rgba(223,43,14,.7)0%,rgba(2,0,16,.5)0%,rgb(0 0 0 / 18%)100%);
         }
 
           .card {
@@ -129,7 +151,7 @@ export default function Home() {
             width: 100%;
             max-width: 1000px;
             transition: background 0.35s ease;
-            background: radial-gradient(circle,rgba(223,93,12,.7)0%,rgba(2,0,36,.5)0%,rgb(0 0 0 / 28%)100%);
+            background: radial-gradient(circle,rgba(223,43,14,.7)0%,rgba(2,0,16,.5)0%,rgb(0 0 0 / 18%)100%);
           }
         }
       `}</style>
@@ -157,14 +179,15 @@ export default function Home() {
             Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
             sans-serif;
 
-            @keyframes AnimateBG { 
-              0%{background-position:0% 50%}
-              50%{background-position:100% 50%}
-              100%{background-position:0% 50%}
-            }
+
+        }
+        @keyframes AnimateBG { 
+          0%{background-position:0% 50%}
+          50%{background-position:100% 50%}
+          100%{background-position:0% 50%}
         }
       `}</style>
-    </div>
+    </div >
   );
 }
 

@@ -1,5 +1,5 @@
 {
-  "name": "traktor-playlist-parser",
+  "name": "rekordbox-playlist-parser",
   "private": false,
   "scripts": {
     "dev": "next dev",
@@ -8,10 +8,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "jquery": "^3.6.2",
+    "m3u8-parser": "^6.0.0",
     "next": "13.0.7",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "jquery": "^3.6.2"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "eslint": "latest",

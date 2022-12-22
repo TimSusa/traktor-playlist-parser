@@ -1,3 +1,3 @@
 # Traktor Playlist Parser
 
-thanks to phoole for inspiration
+thanks to phoole for inspiration# rekordbox-playlist-parser
